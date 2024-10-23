@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Student Profile{% endblock %}
+
+{% block content %}
+<div class="edit-profile">
+    <h2>Edit Student Profile</h2>
+    <!-- Back Button to Student Dashboard -->
+    <a href="{% url 'students:student_profile_edit' student_id=student.id %}" class="back-button">Edit Profile</a>
+
+    <form action="{% url 'update_student_profile' student.id %}" method="POST"> <!-- Adjust the action as necessary -->
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="student-id">Student ID</label>
+            <input type="text" id="student-id" name="student_id" value="{{ student.id }}" disabled>
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" name="surname" value="{{ student.surname }}" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" value="{{ student.name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" value="{{ student.dob }}" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="{{ student.email }}" required>
+        </div>
+        <div class="form-group">
+            <label for="course">Course</label>
+            <input type="text" id="course" name="course" value="{{ student.course }}" required>
+        </div>
+        <div class="form-group">
+            <label for="previous-subjects">Previous Subjects</label>
+            <input type="text" id="previous-subjects" name="previous_subjects" value="{{ student.previous_subjects }}" required>
+        </div>
+        <div class="form-group">
+            <label for="extracurricular-activities">Extracurricular Activities</label>
+            <input type="text" id="extracurricular-activities" name="extracurricular_activities" value="{{ student.extracurricular_activities }}" required>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <input type="text" id="gender" name="gender" value="{{ student.gender }}" required>
+        </div>
+        <div class="form-group">
+            <label for="father-name">Father's Name</label>
+            <input type="text" id="father-name" name="father_name" value="{{ student.father_name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="mother-name">Mother's Name</label>
+            <input type="text" id="mother-name" name="mother_name" value="{{ student.mother_name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" value="{{ student.address }}" required>
+        </div>
+        <div class="form-group">
+            <label for="student-mobile">Student Mobile Number</label>
+            <input type="text" id="student-mobile" name="student_mobile" value="{{ student.student_mobile }}" required pattern="\d{10}">
+        </div>
+        <div class="form-group">
+            <label for="parent-mobile">Parent Mobile Number</label>
+            <input type="text" id="parent-mobile" name="parent_mobile" value="{{ student.parent_mobile }}" required pattern="\d{10}">
+        </div>
+        <div class="form-group">
+            <label for="admission-date">Admission Date</label>
+            <input type="date" id="admission-date" name="admission_date" value="{{ student.admission_date }}" required>
+        </div>
+        <div class="form-group">
+            <label for="admission-quota">Admission Quota</label>
+            <input type="text" id="admission-quota" name="admission_quota" value="{{ student.admission_quota }}" required>
+        </div>
+        <div class="form-group">
+            <label for="religion">Religion</label>
+            <input type="text" id="religion" name="religion" value="{{ student.religion }}" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" id="category" name="category" value="{{ student.category }}" required>
+        </div>
+        <div class="form-group">
+            <label for="blood-group">Blood Group</label>
+            <input type="text" id="blood-group" name="blood_group" value="{{ student.blood_group }}" required>
+        </div>
+        <div class="form-group">
+            <label for="campus-type">Campus Type</label>
+            <input type="text" id="campus-type" name="campus_type" value="{{ student.campus_type }}" required>
+        </div>
+        <div class="form-group">
+            <label for="nationality">Nationality</label>
+            <input type="text" id="nationality" name="nationality" value="{{ student.nationality }}" required>
+        </div>
+        <div class="form-group">
+            <label for="adhar-number">Aadhar Number</label>
+            <input type="text" id="adhar-number" name="adhar_number" value="{{ student.adhar_number }}" required pattern="\d{12}">
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="save-button">Save Changes</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

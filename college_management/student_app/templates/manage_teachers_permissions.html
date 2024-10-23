@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Manage Teacher Permissions{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h2 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        input[type="checkbox"], button {
+            padding: 8px;
+            margin: 4px 0;
+        }
+
+        .update-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 8px 12px;
+        }
+
+        .update-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+
+    <div class="content">
+        <h2 id="teacher-header">Manage Permissions for Teacher: {{ teacher.name }} ({{ teacher.id }})</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Permission</th>
+                    <th>Access Granted</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Student Attendance Entry</td>
+                    <td>
+                        <input type="checkbox" id="attendance_permission" {% if permissions.attendance %}checked{% endif %}>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Student Mark Entry</td>
+                    <td>
+                        <input type="checkbox" id="marks_permission" {% if permissions.marks %}checked{% endif %}>
+                    </td>
+                </tr>
+                <tr>
+                    <td>View All Students</td>
+                    <td>
+                        <input type="checkbox" id="view_students_permission" {% if permissions.view_students %}checked{% endif %}>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <button class="update-btn" onclick="updatePermissions()">Update Permissions</button>
+    </div>
+
+    <script>
+        // Get the teacher's name and ID from Django context
+        const teacherName = "{{ teacher.name }}"; // Passed from the view
+        const teacherId = "{{ teacher.id }}"; // Passed from the view
+        document.getElementById('teacher-header').textContent = `Manage Permissions for Teacher: ${teacherName} (${teacherId})`;
+
+        function updatePermissions() {
+            const permissions = {
+                attendance: document.getElementById('attendance_permission').checked,
+                marks: document.getElementById('marks_permission').checked,
+                viewStudents: document.getElementById('view_students_permission').checked
+            };
+            
+            // Example fetch request to update permissions
+            fetch('/api/update-permissions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ teacherId: teacherId, permissions })
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                alert('Permissions updated successfully!');
+            })
+            .catch((error) => {
+                alert('Error updating permissions: ' + error);
+            });
+        }
+    </script>
+{% endblock %}
