@@ -13,13 +13,6 @@ BDA College
             <div class="header-title">
                 <h1>Big Data University</h1>
             </div>
-            {% comment %} <nav class="navbar">
-                    <button class="button" onclick="location.href='{% url 'logins' %}?user=admin'">Admin</button>
-                <button class="button" onclick="location.href='{% url 'logins' %}?user=student'">Student</button>
-                <button class="button" onclick="location.href='{% url 'logins' %}?user=parent'">Parent</button>
-                <button class="button" onclick="location.href='{% url 'logins' %}?user=teacher'">Teacher</button>
-                <a href="#contact-us" class="button">Contact Us</a>
-            </nav> {% endcomment %}
             <nav class="navbar">
                 <form action="{% url 'student_app:login' %}" method="GET">
                     <input type="hidden" name="user" value="admin">
@@ -39,7 +32,6 @@ BDA College
                 </form>
                 <a href="#contact-us" class="button">Contact Us</a>
             </nav>
-            
         </div>
     </header>
 
@@ -51,17 +43,17 @@ BDA College
 
     <!-- Image Section -->
     <div class="main-content">
-        <img src="{% static 'images/group_photo.jpg' %}" alt="Class Group Photo">
+        <img src="{% static 'images/IMG_4358.JPEG' %}" alt="Class Group Photo">
     </div>
 
     <!-- Latest News Section -->
     <div class="news-container">
         <h2>Latest News</h2>
         <marquee behavior="scroll" direction="left" scrollamount="6">
-            <p>21 September 2024: End Semester Provisional Time Table November 2024</p>
-            <p>20 September 2024: Changes in Academic Calendar for Odd Semester of 2024-25</p>
+            <p>08 November 2024: End Semester Provisional Time Table November 2024</p>
+            <p>26 October 2024: Changes in Academic Calendar for Odd Semester of 2024-25</p>
             <p>20 September 2024: Last Date For Document Verification For Students Admitted For the Academic Year 2024-25</p>
-            <p>20 September 2024: Fee Notice for 1st year UG and PG</p>
+            <p>20 October 2024: Fee Notice for 1st year UG and PG</p>
         </marquee>
     </div>
 
@@ -139,9 +131,9 @@ BDA College
         }
 
         .header-container {
-            background-color: #4a4e69;
+            background-color: #283593;
             color: white;
-            padding: 10px;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -149,102 +141,78 @@ BDA College
 
         .navbar .button {
             margin: 0 10px;
-            padding: 10px 15px;
-            background-color: #9a8c98;
+            padding: 12px 20px;
+            background-color: #5c6bc0;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
         }
 
         .navbar .button:hover {
-            background-color: #c9ada7;
+            background-color: #7986cb;
         }
 
         .welcome-section {
             text-align: center;
-            padding: 50px;
-            background-color: #f4f4f4;
+            padding: 60px;
+            background-color: #f8f9fa;
         }
 
         .news-container {
-            padding: 20px;
-            background-color: #e9c46a;
+            padding: 30px;
+            background-color: #ffc107;
             text-align: center;
         }
 
         .professors-section {
-            padding: 20px;
-            background-color: #2a9d8f;
+            padding: 40px;
+            background-color: #1565c0;
             color: white;
             text-align: center;
         }
 
         .professors-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 20px;
         }
 
         .professor-box {
-            background-color: #264653;
-            padding: 15px;
+            background-color: #1e88e5;
+            padding: 20px;
             border-radius: 5px;
         }
 
         .contact-section {
-            padding: 20px;
-            background-color: #f4f4f4;
+            padding: 30px;
+            background-color: #f8f9fa;
             text-align: center;
         }
 
         .footer {
-            background-color: #4a4e69;
+            background-color: #283593;
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 20px;
         }
 
         .main-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 40px;
+            text-align: center;
         }
 
         .main-content img {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .description-box {
-            margin-top: 30px;
-            background-color: white;
-            padding: 20px;
-            width: 50%;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        .description-box p {
-            font-size: 1.2em;
         }
 
         @media (max-width: 768px) {
-            .description-box {
-                width: 80%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .description-box {
-                width: 90%;
-            }
-
             .navbar .button {
+                margin: 5px;
                 padding: 10px;
             }
         }
